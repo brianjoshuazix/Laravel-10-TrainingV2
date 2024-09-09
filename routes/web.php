@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
 
@@ -20,7 +21,8 @@ use function Laravel\Prompts\select;
 Route::get('/', function () {
     // fetch all users
     // $users = DB::select("select * from users");
-    $users = DB::table('users')->find(1);
+    // $users = DB::table('users')->find(1);
+    $users = User::all();
 
     // create new users
     // $user = DB::insert('insert into users (name, email, password) values (?, ?, ?)', [
@@ -32,6 +34,11 @@ Route::get('/', function () {
     //     'email' => 'zahra@gmail.com',
     //     'password' => 'zahra'
     // ]);
+    // $user = User::create([
+    //     'name' => 'Zahra1',
+    //     'email' => 'zahra@gmail.com',
+    //     'password' => 'zahra'
+    // ]);
 
     // update users
     // $user = DB::update("update users set email=? where id=?", [
@@ -39,10 +46,17 @@ Route::get('/', function () {
     //     2,
     // ]);
     // $user = DB::table('users')->where('id', 3)->update(['email' => 'zahra145@gmail.com']);
+//     $user = User::find(5);
+//     $user->update([
+//         'email' => 'az@gmail.com'
+//    ]);
+
 
     // delete a user
     // $user = DB::delete("delete from users where id=2");
     // $user = DB::table('users')->where('id', 3)->delete();
+    // $user = User::find(5);
+    // $user->delete();
 
     dd($users);
 });
