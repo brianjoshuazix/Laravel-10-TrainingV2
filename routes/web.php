@@ -22,21 +22,22 @@ Route::get('/', function () {
     // fetch all users
     // $users = DB::select("select * from users");
     // $users = DB::table('users')->find(1);
-    $users = User::all();
+    $user = User::find(14);
 
     // create new users
     // $user = DB::insert('insert into users (name, email, password) values (?, ?, ?)', [
     //     'Azzahra',
     //     'az@gmail.com',
-    //     '12345']);
+    //     '12345'
+    // ]);
     // $user = DB::table('users')->insert([
     //     'name' => 'Zahra',
     //     'email' => 'zahra@gmail.com',
     //     'password' => 'zahra'
     // ]);
     // $user = User::create([
-    //     'name' => 'Zahra1',
-    //     'email' => 'zahra@gmail.com',
+    //     'name' => 'Zahra',
+    //     'email' => 'zahra8@gmail.com',
     //     'password' => 'zahra'
     // ]);
 
@@ -58,7 +59,7 @@ Route::get('/', function () {
     // $user = User::find(5);
     // $user->delete();
 
-    dd($users);
+    dd($user->name);
 });
 
 Route::get('/dashboard', function () {
