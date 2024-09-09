@@ -19,10 +19,12 @@ use function Laravel\Prompts\select;
 */
 
 Route::get('/', function () {
+    return view('welcome');
+});
     // fetch all users
     // $users = DB::select("select * from users");
     // $users = DB::table('users')->find(1);
-    $user = User::find(14);
+    // $user = User::find(14);
 
     // create new users
     // $user = DB::insert('insert into users (name, email, password) values (?, ?, ?)', [
@@ -59,8 +61,8 @@ Route::get('/', function () {
     // $user = User::find(5);
     // $user->delete();
 
-    dd($user->name);
-});
+    // dd($user->name);
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
