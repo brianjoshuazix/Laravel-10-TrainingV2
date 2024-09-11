@@ -11,7 +11,13 @@
         </p>
     </header>
 
-    <form method="post" action="/profile/avatar">
+    <form method="post" action="{{route('profile.avatar')}}">
+        @method('patch')
+        @csrf
+
+        {{-- <input type="hidden" name="_method" value="patch"> --}}
+
+        {{-- <input type="hidden" name="_token" value="{{ csrf_token() }}"> --}}
 
         <div>
             <x-input-label for="name" :value="_('Avatar')" />
