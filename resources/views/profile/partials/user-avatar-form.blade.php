@@ -5,6 +5,8 @@
             {{ __('User Avatar') }}
         </h2>
 
+        <img width="50" height="50" class="rounded-full" src="{{ asset('storage/' . $user->avatar) }}" alt="user avatar">
+
         <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
 
             {{ __("Add or Update User Avatar") }}
