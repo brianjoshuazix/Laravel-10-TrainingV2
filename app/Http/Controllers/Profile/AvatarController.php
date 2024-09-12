@@ -12,7 +12,13 @@ class AvatarController extends Controller
         // store avatar field
         // return back()->with('message', 'Avatar is Changed');
 
-        dd($request->all());
-        return redirect(route('profile.edit'));
+
+
+        $path = $request->file('avatar')->store('avatars');
+        auth()->user()->update(['avatar' => storage_path('app') . '/' . $path]);
+
+
+
+        return redirect(route('profile.edit'))->with('message', 'Avatar is updated');
     }
 }
