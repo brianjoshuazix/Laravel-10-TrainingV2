@@ -1,5 +1,6 @@
 <?php
 
+use OpenAI\Laravel\Facades\OpenAI;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Profile\AvatarController;
 use App\Models\User;
@@ -77,3 +78,11 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__ . '/auth.php';
+
+Route::get('/openai', function() {
+    $result = OpenAI::completions()->create([
+        'model' => 'gpt-3.5-turbo',
+        'prompt' => 'PHP is',
+    ]);
+    echo $result['choices'][0]['text'];
+});
