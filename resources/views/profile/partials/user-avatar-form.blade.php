@@ -5,13 +5,22 @@
             {{ __('User Avatar') }}
         </h2>
 
-        <img width="50" height="50" class="rounded-full" src="{{ asset('storage/' . $user->avatar) }}" alt="user avatar">
 
-        <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
-
-            {{ __("Add or Update User Avatar") }}
-        </p>
     </header>
+    <img width="50" height="50" class="rounded-full" src="{{ asset('storage/' . $user->avatar) }}" alt="user avatar">
+
+    <form action="{{route('profile.avatar.ai')}}" method="POST" class="mt-4">
+        @csrf
+        <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+            {{ __("Generate avatar from AI") }}
+        </p>
+        <x-primary-button>{{ __('Generate Avatar') }}</x-primary-button>
+    </form>
+
+    <p class="my-4 text-sm text-gray-600 dark:text-gray-400">
+
+        {{ __("Or") }}
+    </p>
 
     @if (session('message'))
     <div class="text-red-500">
@@ -29,7 +38,7 @@
         {{-- <input type="hidden" name="_token" value="{{ csrf_token() }}"> --}}
 
         <div>
-            <x-input-label for="name" :value="_('Avatar')" />
+            <x-input-label for="name" :value="_('Upload Avatar from Computer')" />
             <x-text-input id="avatar" name="avatar" type="file" class="mt-1 block w-full" :value="old('avatar', $user->avatar)"  autofocus autocomplete="avatar" />
             <x-input-error class="mt-2" :messages="$errors->get('avatar')" />
         </div>
