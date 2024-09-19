@@ -80,9 +80,11 @@ Route::middleware('auth')->group(function () {
 require __DIR__ . '/auth.php';
 
 Route::get('/openai', function() {
-    $result = OpenAI::completions()->create([
-        'model' => 'gpt-3.5-turbo',
-        'prompt' => 'PHP is',
+    $result = OpenAI::images()->create([
+        'prompt' => "create avatar for user with cool style animated",
+        'n' => 2,
+        'size' => '512x512',
     ]);
-    echo $result['choices'][0]['text'];
+    // echo $result['choices'][0]['text'];
+    return response(['url' => $result->data[0]->url]);
 });
