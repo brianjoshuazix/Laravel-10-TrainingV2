@@ -93,14 +93,20 @@ require __DIR__ . '/auth.php';
 //     return response(['url' => $result->data[0]->url]);
 // });
 
-Route::get('/auth/redirect', function () {
+Route::post('/auth/redirect', function () {
     return Socialite::driver('github')->redirect();
-});
+})->name('login.github');
 
 Route::get('/auth/callback', function () {
     $user = Socialite::driver('github')->user();
 
-    DD($user);
+    $user = User::firstOrCreate(['email' => $user->email], [
+        'name' => $user->name,
+        'password' => 'password',
+    ]);
+
+    Auth::login($user);
+    return redirect('/dashboard');
 
     // $user->token
 });
