@@ -6,6 +6,7 @@ use App\Http\Controllers\Profile\AvatarController;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
+use Laravel\Socialite\Facades\Socialite;
 
 use function Laravel\Prompts\select;
 
@@ -91,3 +92,15 @@ require __DIR__ . '/auth.php';
 //     // echo $result['choices'][0]['text'];
 //     return response(['url' => $result->data[0]->url]);
 // });
+
+Route::get('/auth/redirect', function () {
+    return Socialite::driver('github')->redirect();
+});
+
+Route::get('/auth/callback', function () {
+    $user = Socialite::driver('github')->user();
+
+    DD($user);
+
+    // $user->token
+});
